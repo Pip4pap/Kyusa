@@ -14,7 +14,7 @@
 
 <style>
 	p{
-		font-size: 50px;
+		font-size: 40px;
 		padding-top: 20px;
 	}
 </style>
