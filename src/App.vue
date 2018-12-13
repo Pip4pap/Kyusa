@@ -25,11 +25,10 @@ export default {
 
 <style>
 body {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Oswald', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  font-family: Helvetica;
   background-color: #ffc107;
 }
 </style>
