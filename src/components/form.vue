@@ -9,13 +9,13 @@
 	      
 	      <div>
 	          <select id="fromCurrency" onchange="" class="form-control">
-	            <!--To be populated from a fetch-->
+	            <option v-for="currency in currencies">{{ currency.id }} {{ currency.currencyName }}</option>
 	          </select>
 	      </div>
 
 	      <div>
 	          <select id="toCurrency" onchange="" class="form-control">
-	            <!--To be populated from a fetch-->
+	          	<option v-for="currency in currencies">{{ currency.id }} {{ currency.currencyName }}</option>
 	          </select>
 	      </div>  
 	    
@@ -29,13 +29,27 @@
 </template>
 
 <script>
-	export default{
-	  name: 'inputForm'
-	}
+export default {
+  name: 'inputForm',
+  data() {
+  	return {
+  		currencies: []
+  	}
+  },
+  created() {
+    fetch('https://free.currencyconverterapi.com/api/v5/currencies')
+    .then(response => {
+		return response.json()
+  	})
+    .then(data => {
+    	this.currencies = data.results
+    })
+  }
+}
 </script>
 
 <style scoped>
-	.form-control{
+	.form-control, option{
 		border-top-color: transparent;
 		border-right-color: transparent;
 		border-left-color: transparent;
@@ -43,7 +57,7 @@
 		border-bottom-color: black;
 		width: 300px;
 		margin-bottom: 40px;
-		font-size: 30px;
+		font-size: 24px;
 	}
 	.form-control:focus, button:focus{
 		outline-color: transparent;
