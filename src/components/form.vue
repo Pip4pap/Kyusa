@@ -1,34 +1,36 @@
 <template>
-	<form>
-	  <div>
-	    <div>
+	<div>
+		<form>
+		  <div>
+		    <div>
 
-	      <div>
-	        	<input value="0" min="0" id="inputAmount" class="form-control" type="number" name="amount" placeholder="Enter amount">
-	      </div>
-	      
-	      <div>
-	          <select id="fromCurrency" v-model="fromCurrency" class="form-control">
-	            <option v-bind:value="currency.id" v-for="currency in currencies" :key="currency.id">
-	            	{{ currency.id }} {{ currency.currencyName }}
-	        	</option>
-	          </select>
-	      </div>
+		      <div>
+		        	<input value="0" min="0" id="inputAmount" class="form-control" type="number" name="amount" placeholder="Enter amount">
+		      </div>
+		      
+		      <div>
+		          <select id="fromCurrency" v-model="fromCurrency" class="form-control">
+		            <option v-bind:value="currency.id" v-for="currency in currencies" :key="currency.id">
+		            	{{ currency.id }} {{ currency.currencyName }}
+		        	</option>
+		          </select>
+		      </div>
 
-	      <div>
-	          <select id="toCurrency" v-model="toCurrency" class="form-control">
-  				<option v-bind:value="currency.id" v-for="currency in currencies" :key="currency.id">
-	          		{{ currency.id }} {{ currency.currencyName }}
-	          	</option>
-	          </select>
-	      </div>  
-	    </div>
-	    <div>
-	      	<button>Convert</button>
-	    </div>
-	    <!---->
-	  </div>
-	</form>
+		      <div>
+		          <select id="toCurrency" v-model="toCurrency" class="form-control">
+	  				<option v-bind:value="currency.id" v-for="currency in currencies" :key="currency.id">
+		          		{{ currency.id }} {{ currency.currencyName }}
+		          	</option>
+		          </select>
+		      </div>  
+		    </div>
+		    <!---->
+		  </div>
+		</form>
+		<div>
+		  	<button v-bind:class="{disabled: !(toCurrency && fromCurrency)}">Convert</button>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -53,6 +55,9 @@ export default {
 </script>
 
 <style scoped>
+	button.disabled {
+		background-color: #3a3a3a;
+	}
 	.form-control, option{
 		border-top-color: transparent;
 		border-right-color: transparent;
