@@ -1,23 +1,20 @@
 <template>
   <div id="app">
     <mainHeading/>
-    <inputForm/>
-    <display/>
+    <inputDisplay/>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
-import inputForm from './components/form'
-import display from './components/display'
-import mainHeading from './components/heading'
+import Hello from '@/components/Hello'
+import mainHeading from '@/components/heading'
+import inputDisplay from '@/components/formDisplay'
 
 export default {
   name: 'app',
   components: {
     Hello,
-    inputForm,
-    display,
+    inputDisplay,
     mainHeading
   }
 }

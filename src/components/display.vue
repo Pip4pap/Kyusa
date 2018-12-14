@@ -1,15 +1,12 @@
 <template>
-	<p>{{ result }}</p>
+	<p></p>
 </template>
 
 <script>
-	export default{
-	  name: 'display',
-	  data: () => {
-	    let result = 816500
-	    return {result}
-	  }
-	}
+export default{
+  name: 'display',
+  props: ['toCurrency', 'fromCurrency'],
+}
 </script>
 
 <style>

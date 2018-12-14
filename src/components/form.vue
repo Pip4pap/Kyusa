@@ -8,17 +8,20 @@
 	      </div>
 	      
 	      <div>
-	          <select id="fromCurrency" onchange="" class="form-control">
-	            <option v-for="currency in currencies">{{ currency.id }} {{ currency.currencyName }}</option>
+	          <select id="fromCurrency" v-model="fromCurrency" class="form-control">
+	            <option v-bind:value="currency.id" v-for="currency in currencies" :key="currency.id">
+	            	{{ currency.id }} {{ currency.currencyName }}
+	        	</option>
 	          </select>
 	      </div>
 
 	      <div>
-	          <select id="toCurrency" onchange="" class="form-control">
-	          	<option v-for="currency in currencies">{{ currency.id }} {{ currency.currencyName }}</option>
+	          <select id="toCurrency" v-model="toCurrency" class="form-control">
+  				<option v-bind:value="currency.id" v-for="currency in currencies" :key="currency.id">
+	          		{{ currency.id }} {{ currency.currencyName }}
+	          	</option>
 	          </select>
 	      </div>  
-	    
 	    </div>
 	    <div>
 	      	<button>Convert</button>
@@ -31,19 +34,20 @@
 <script>
 export default {
   name: 'inputForm',
+  props: ['currencies'],
   data() {
-  	return {
-  		currencies: []
-  	}
+	return {
+		fromCurrency: null,
+		toCurrency: null,
+	}
   },
-  created() {
-    fetch('https://free.currencyconverterapi.com/api/v5/currencies')
-    .then(response => {
-		return response.json()
-  	})
-    .then(data => {
-    	this.currencies = data.results
-    })
+  watch: {
+  	toCurrency: function(newVal) {
+  		this.$emit('update:toCurrency', newVal)
+  	},
+  	fromCurrency: function(newVal){
+  		this.$emit('update:fromCurrency', newVal)
+  	}
   }
 }
 </script>
