@@ -1,5 +1,5 @@
 <template>
-	<p>{{ result }}</p>
+	<p>{{ toCurrency }} {{ result }}</p>
 </template>
 
 <script>
@@ -14,12 +14,12 @@ export default {
   watch: {
   	toCurrency: function(_) {
   		runConversion(this.fromCurrency, this.toCurrency).then(result => {
-  			this.result = round(result, 0)
+  			this.result = round(result, 0).toLocaleString()
   		})
   	},
   	fromCurrency: function(_) {
   		runConversion(this.fromCurrency, this.toCurrency).then(result => {
-  			this.result = round(result, 0)
+  			this.result = round(result, 0).toLocaleString()
   		})
   	}
   },
