@@ -1,6 +1,6 @@
 <template>
 	<div>		  
-	    <input v-model="inputAmount" value="0" min="0" id="inputAmount" class="ui transparent input" type="number" name="inputAmount" placeholder="Enter amount"><br/>
+	    <input v-model="inputAmount" value="0" min="0" id="inputAmount" class="form-control" type="number" name="inputAmount" placeholder="Enter amount"><br/>
 	      
 	    <select id="fromCurrency" v-model="fromCurrency" class="ui search selection dropdown">
 	        <option :value="currency.id" v-for="currency in currencies">
@@ -50,15 +50,15 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 	button.disabled {
 		background-color: #3a3a3a;
 	}
-/*	#fromCurrency, #toCurrency{
+	.form-control, .ui.selection.dropdown{
 		border-top-color: transparent;
 		border-right-color: transparent;
 		border-left-color: transparent;
-		background-color: inherit;
+		background-color: inherit !important;
 		border-bottom-color: black;
 		width: 300px;
 		margin-bottom: 40px;
@@ -66,7 +66,7 @@ export default {
 	}
 	.form-control:focus, button:focus{
 		outline-color: transparent;
-	}*/
+	}
 	button{
 		background-color: black;
 		color: #ffc107;
