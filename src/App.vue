@@ -1,20 +1,20 @@
 <template>
   <div id="app">
     <mainHeading/>
-    <inputDisplay/>
+    <inputForm/>
   </div>
 </template>
 
 <script>
 import Hello from '@/components/Hello'
 import mainHeading from '@/components/heading'
-import inputDisplay from '@/components/formDisplay'
+import inputForm from '@/components/form'
 
 export default {
   name: 'app',
   components: {
     Hello,
-    inputDisplay,
+    inputForm,
     mainHeading
   }
 }
