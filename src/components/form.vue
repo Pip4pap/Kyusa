@@ -2,7 +2,7 @@
 	<div>
 		<form>
 		  
-		    <input value="0" min="0" id="inputAmount" class="form-control" type="number" name="inputAmount" placeholder="Enter amount"><br/>
+		    <input v-model="inputAmount" value="0" min="0" id="inputAmount" class="form-control" type="number" name="inputAmount" placeholder="Enter amount"><br/>
 		      
 		    <select id="fromCurrency" v-model="fromCurrency" class="form-control">
 		        <option :value="currency.id" v-for="currency in currencies">
@@ -32,6 +32,7 @@ export default {
 		fromCurrency: null,
 		toCurrency: null,
 		result: null,
+		inputAmount: null
 	}
   },
   created(){
@@ -40,12 +41,10 @@ export default {
   methods: {
   	convert() {
   		getRate(this.fromCurrency, this.toCurrency).then(rate => {
-  			this.result = (rate * 800).toFixed(0)
-  			console.log(`${this.toCurrency} ${this.result}`)
+  			let result = +(rate * this.inputAmount).toFixed(0)
+  			this.result = result.toLocaleString()
   		})
-  		console.log(this.fromCurrency, this.toCurrency)
-  	},
-
+  	}
   }
 }
 </script>
@@ -78,6 +77,6 @@ export default {
 	}
 	p{
 		font-size: 40px;
-		margin-top: 20px;
+		margin-top: 30px;
 	}
 </style>
