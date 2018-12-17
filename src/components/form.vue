@@ -1,21 +1,18 @@
 <template>
-	<div>
-		<form>
-		  
-		    <input v-model="inputAmount" value="0" min="0" id="inputAmount" class="form-control" type="number" name="inputAmount" placeholder="Enter amount"><br/>
-		      
-		    <select id="fromCurrency" v-model="fromCurrency" class="form-control">
-		        <option :value="currency.id" v-for="currency in currencies">
-		        	{{ currency.id }} {{ currency.currencyName }}
-		    	</option>
-		    </select><br/>
-		      
-		    <select id="toCurrency" v-model="toCurrency" class="form-control">
-	  			<option :value="currency.id" v-for="currency in currencies">
+	<div>		  
+	    <input v-model="inputAmount" value="0" min="0" id="inputAmount" class="ui transparent input" type="number" name="inputAmount" placeholder="Enter amount"><br/>
+	      
+	    <select id="fromCurrency" v-model="fromCurrency" class="ui search selection dropdown">
+	        <option :value="currency.id" v-for="currency in currencies">
+ 		        	{{ currency.id }} {{ currency.currencyName }}		    	
+			</option>
+	    </select><br/>
+	      
+	    <select id="toCurrency" v-model="toCurrency" class="ui search selection dropdown">
+  			<option :value="currency.id" v-for="currency in currencies">
 		          	{{ currency.id }} {{ currency.currencyName }}
-		        </option>
-		    </select><br/>
-		</form>
+	        </option>
+	    </select><br/>
 		<button v-bind:class="{disabled: !(toCurrency && fromCurrency)}" @click="convert">Convert</button>
 		<p>{{toCurrency}} {{result}}</p>
 	</div>
@@ -38,6 +35,10 @@ export default {
   created(){
   	getCurrencies().then(currencies => this.currencies = currencies)
   },
+  mounted(){
+  	$('#fromCurrency').dropdown()
+  	$('#toCurrency').dropdown()
+  },
   methods: {
   	convert() {
   		getRate(this.fromCurrency, this.toCurrency).then(rate => {
@@ -53,7 +54,7 @@ export default {
 	button.disabled {
 		background-color: #3a3a3a;
 	}
-	.form-control, option{
+/*	#fromCurrency, #toCurrency{
 		border-top-color: transparent;
 		border-right-color: transparent;
 		border-left-color: transparent;
@@ -65,7 +66,7 @@ export default {
 	}
 	.form-control:focus, button:focus{
 		outline-color: transparent;
-	}
+	}*/
 	button{
 		background-color: black;
 		color: #ffc107;
