@@ -14,7 +14,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-  p{
+  p:first-child{
+    margin-top: 30px;
     font-size: 40px;
     font-weight: normal;
   }
