@@ -111,10 +111,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       stripPrefix: 'dist/',
       runtimeCaching : [
         {
-          urlPattern: /^https:\/\/fonts\.googleapis\.com\/css\?.*=.*/,
-          handler: 'cacheFirst'
-        },
-        {
           urlPattern: /^https:\/\/cdnjs\.cloudflare\.com\/ajax\/libs\//,
           handler: 'cacheFirst'
         }
