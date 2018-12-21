@@ -5,16 +5,20 @@ function openIDB(){
 	  return Promise.resolve();
 	} else {
 		return idb.open('currencyDB', 1, upgradeDB => {
-	      const currrencies = upgradeDB.createObjectStore('currencies')
+			switch(upgradeDB.oldVersion){
+				case 0:
+					const currrencies = upgradeDB.createObjectStore('currencies')
+				case 1:
+					const rates = upgradeDB.createObjectStore('rates')				
+			}
 		})
 	}
 }
 
 function getCurrencies() {
-	let returnPromise = openIDB().then(db => {
+	return openIDB().then(db => {
 	  	const currencyStore = db.transaction(['currencies']).objectStore('currencies')
 	  	return currencyStore.get('currencies').then(data => {
-	  		console.log('From the IDB', data)
 	  		if(data === undefined){
 			    return fetch('https://free.currencyconverterapi.com/api/v5/currencies')
 				        .then(response => {
@@ -27,25 +31,30 @@ function getCurrencies() {
 							    let store = tx.objectStore('currencies');
 							    store.put(currencies, 'currencies')
 							})
-				    		console.log('From the network:',currencies)
 				    		return currencies
 				        })
 	  		}
 	  		return data
 	  	})
 	})
-    console.log('returnPromise', returnPromise)
-    return returnPromise
 }
 
 function getRate(fromCurrency, toCurrency){
-	return fetch(`https://free.currencyconverterapi.com/api/v5/convert?q=${fromCurrency}_${toCurrency}&compact=ultra`)
-	.then(response => {
-		return response.json()
-	})
-	.then(data => {
-		return Object.values(data)[0]
-	})
+	// return openIDB().then(db => {
+	// 	const ratesStore = db.transaction(['rates']).objectStore('rates')
+	// 	return ratesStore.get(`${fromCurrency}_${toCurrency}`).then(data => {
+	// 		if (data === undefined){
+		return fetch(`https://free.currencyconverterapi.com/api/v5/convert?q=${fromCurrency}_${toCurrency}`)
+				.then(response => {
+					return response.json()
+				})
+				.then(data => {
+					console.log('rate Object: ', data.results.fromCurrency_toCurrency.val)
+					return 
+				})
+	// 		}
+	// 	})
+	// })
 }
 
 export {getCurrencies, getRate}
