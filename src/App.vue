@@ -22,7 +22,7 @@ export default {
 
 <style>
 body {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Oswald', Courier;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
