@@ -61,6 +61,9 @@ function getRate(fromCurrency, toCurrency){
 							})
 							return forwardRate
 						})
+						.catch(error => {
+							console.log(error)
+						})
 			}
 			return data
 		})
