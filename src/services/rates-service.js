@@ -1,4 +1,5 @@
 import idb from "@/assets/js/idb"
+import swal from 'sweetalert'
 
 function openIDB(){
 	if(!'serviceWorker' in navigator){
@@ -44,6 +45,9 @@ function getRate(fromCurrency, toCurrency){
 		const ratesStore = db.transaction(['rates']).objectStore('rates')
 		return ratesStore.get(`${fromCurrency}_${toCurrency}`).then(data => {
 			if (data === undefined){
+				if(navigator.onLine === false){
+					swal('Ooops!','This conversion is not available offline','error')
+				}
 				return fetch(`https://free.currencyconverterapi.com/api/v5/convert?q=${fromCurrency}_${toCurrency},${toCurrency}_${fromCurrency}`)
 						.then(response => {
 							return response.json()
