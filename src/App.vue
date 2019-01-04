@@ -27,5 +27,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background-color: #ffa916;
+  display: flex;
+  flex-direction: column;
 }
 </style>
