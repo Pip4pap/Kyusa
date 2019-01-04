@@ -45,7 +45,12 @@ export default {
   methods: {
   	convert() {
   		if(navigator.onLine === false){
-			$('#popup').css({'visibility':'visible', 'opacity':'1'})  			
+			$('#popup').css({
+							'visibility':'visible', 
+							'opacity':'1',
+							'animation-name': 'slideUp',
+							'animation-duration': '2s'
+							})  			
   		}
   		getRate(this.fromCurrency, this.toCurrency).then(rate => {
   			let result = +(rate * this.inputAmount).toFixed(0)
@@ -91,6 +96,16 @@ export default {
 		font-size: 40px;
 		margin-top: 30px;
 	}
+	@keyframes slideUp{
+		from {
+			visibility: hidden;
+			opacity: 0;
+		}
+		to {
+			visibility: visible;
+			opacity: 1;	
+		}
+	}
 	#popup{
 		position: absolute;
 		bottom: 0;
@@ -98,7 +113,7 @@ export default {
 		width: 100%;
 		height: 50px;
 		color: white;
-		font-size: 16px;
+		font-size: 1rem;
 		visibility: hidden;
 		opacity: 0;
 	}
