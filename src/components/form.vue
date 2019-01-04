@@ -44,7 +44,9 @@ export default {
   },
   methods: {
   	convert() {
-  		$('#popup').css({'visibility':'visible', 'opacity':'1'})
+  		if(navigator.onLine === false){
+			$('#popup').css({'visibility':'visible', 'opacity':'1'})  			
+  		}
   		getRate(this.fromCurrency, this.toCurrency).then(rate => {
   			let result = +(rate * this.inputAmount).toFixed(0)
   			this.result = result.toLocaleString()
@@ -97,6 +99,8 @@ export default {
 		height: 50px;
 		color: white;
 		font-size: 16px;
+		visibility: hidden;
+		opacity: 0;
 	}
 	span{
 		height: 50px;
