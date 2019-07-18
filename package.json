@@ -14,6 +14,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "sw-offline-google-analytics": "0.0.25",
     "sweetalert": "^2.1.2",
     "typeahead": "^0.2.2",
     "vue": "^2.5.2"
